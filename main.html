@@ -7,13 +7,36 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h1>Game of life!</h1>
+    <header>
+        <h1>Game of life!</h1>
+    </header>
+    
     <main>
-        <canvas id="canvasApp"></canvas>
-        <div class="buttons">
-            <button id="play"><p>Play</p></button>
-            <button id="reset"><p>Reset</p></button>
-            <!-- <p id="count">T-1</p> -->
+        <aside> 
+            <h2>
+                What is this game?
+            </h2>
+            
+            <p>
+                The Game of Life, not to be confused with the popular board game, is a fascinating cellular automaton devised by mathematician John Conway in 1970. Despite its simple rules, the Game of Life produces complex and mesmerizing patterns, making it a captivating exploration in the world of computational and mathematical phenomena.
+            </p>    
+            <!-- Will modify it later
+            At its core, the Game of Life operates on a grid of cells, each of which can be either alive or dead. The state of each cell evolves based on a set of rules:
+                
+                Underpopulation: A live cell with fewer than two live neighbors dies.
+                Survival: A live cell with two or three live neighbors survives.
+                Overpopulation: A live cell with more than three live neighbors dies.
+                Reproduction: A dead cell with exactly three live neighbors becomes alive.
+                With just these four rules, the Game of Life unfolds in an endless dance of creation and destruction, resulting in intricate patterns, oscillators, and gliders. It serves as a captivating demonstration of emergent complexity arising from simple rules.
+            -->
+        </aside>        
+        <div class="app">
+            <canvas id="canvasApp" width="600" height="600"></canvas>
+            <div class="buttons">
+                <button id="play">Next</button>
+                <button id="reset">Reset</button>
+                <h3 id="count"></h3>
+            </div>
         </div>
     </main>
     <script src="dist/main.js"></script>
