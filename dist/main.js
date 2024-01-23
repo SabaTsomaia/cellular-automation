@@ -82,14 +82,9 @@ function generateNextBoard(ctx) {
     render(ctx);
 }
 // Handling Clicks
-app.addEventListener('click', (e) => {
+app.addEventListener('mousedown', (e) => {
     const col = Math.floor(e.offsetX / CELL_WIDTH);
     const row = Math.floor(e.offsetY / CELL_HEIGHT); // Floor it because it is FLOAT
-    if (board[row][col] == 'alive')
-        board[row][col] = 'dead';
-    else
-        board[row][col] = 'alive';
-    // console.log(`client: ${[e.offsetX,e.offsetY]}`);
     render(ctx);
 });
 // Handling Drawing-like function
@@ -129,7 +124,6 @@ reset === null || reset === void 0 ? void 0 : reset.addEventListener('click', (e
     render(ctx);
 });
 next === null || next === void 0 ? void 0 : next.addEventListener('click', (e) => {
-    //console.log(e);
     generateNextBoard(ctx);
 });
 render(ctx);
