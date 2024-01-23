@@ -37,7 +37,7 @@ function render(ctx) {
 }
 function neighboursCount(row, col) {
     let nLiveCount = 0;
-    if (row > 0 && col > 0 && row < 32 && col < 32) {
+    if (row > 0 && col > 0 && row < B_ROWS && col < B_COLS) {
         for (let i = Math.max(0, row - 1); i <= Math.min(B_ROWS - 1, row + 1); i++) {
             for (let j = Math.max(0, col - 1); j <= Math.min(B_COLS - 1, col + 1); j++) {
                 if (!(i === row && j === col) && board[i][j] == 'alive') {
@@ -81,6 +81,7 @@ function generateNextBoard(ctx) {
     count.innerHTML = `T-${countVar}`;
     render(ctx);
 }
+// Handling Clicks
 app.addEventListener('click', (e) => {
     const col = Math.floor(e.offsetX / CELL_WIDTH);
     const row = Math.floor(e.offsetY / CELL_HEIGHT); // Floor it because it is FLOAT
@@ -91,6 +92,29 @@ app.addEventListener('click', (e) => {
     // console.log(`client: ${[e.offsetX,e.offsetY]}`);
     render(ctx);
 });
+// Handling Drawing-like function
+let isMouseDown = false;
+app.addEventListener('mousedown', (e) => {
+    isMouseDown = true;
+    paintCell(e, ctx);
+});
+app.addEventListener('mousemove', (e) => {
+    if (isMouseDown) {
+        paintCell(e, ctx);
+    }
+});
+app.addEventListener('mouseup', () => {
+    isMouseDown = false;
+});
+app.addEventListener('mouseout', () => {
+    isMouseDown = false;
+});
+function paintCell(e, ctx) {
+    const col = Math.floor(e.offsetX / CELL_WIDTH);
+    const row = Math.floor(e.offsetY / CELL_HEIGHT);
+    board[row][col] = 'alive';
+    render(ctx);
+}
 reset === null || reset === void 0 ? void 0 : reset.addEventListener('click', (e) => {
     defaultBackg(ctx);
     for (let r = 0; r < B_ROWS; ++r) {
